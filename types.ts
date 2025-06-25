@@ -1,82 +1,87 @@
 
-export interface PersonalDetails {
+export interface PersonalInfo {
   fullName: string;
   email: string;
   phone: string;
-  linkedin?: string;
-  portfolio?: string;
-  address?: string;
+  linkedin: string;
+  github: string;
+  portfolio: string;
+  address: string;
+  professionalSummary: string;
 }
 
-export interface WorkExperience {
+export interface Experience {
   id: string;
   jobTitle: string;
   company: string;
-  location?: string;
+  location: string;
   startDate: string;
   endDate: string;
   responsibilities: string[];
+  isCurrent: boolean;
 }
 
 export interface Education {
   id: string;
-  degree: string;
   institution: string;
-  location?: string;
+  degree: string;
+  fieldOfStudy: string;
   graduationDate: string;
-  details?: string;
+  gpa?: string;
 }
 
 export interface Skill {
-  id: string;
+  id:string;
   name: string;
+  category: string; // e.g., Technical, Soft, Language
 }
 
 export interface CustomSection {
   id: string;
   title: string;
-  content: string; 
+  content: string;
 }
 
 export interface ResumeData {
-  personalDetails: PersonalDetails;
-  summary: string;
-  experience: WorkExperience[];
+  personalInfo: PersonalInfo;
+  experience: Experience[];
   education: Education[];
   skills: Skill[];
   customSections: CustomSection[];
+  targetRole?: string;
+  targetIndustry?: string;
 }
 
 export enum TemplateId {
-  CLASSIC = 'classic',
   MODERN = 'modern',
+  CLASSIC = 'classic',
   CREATIVE = 'creative',
 }
 
-export interface FontOptions {
-  fontFamily: string;
-  fontSize: string; 
+export interface Template {
+  id: TemplateId;
+  name: string;
+  previewImage?: string; // URL to a preview image
+  component: React.FC<{ resumeData: ResumeData, accentColor: string }>;
 }
 
-export interface ColorScheme {
-  primary: string;
-  secondary: string;
-  accent: string;
-  background: string;
-  text: string;
-  name?: string; // Optional name for the color scheme
+export interface AIResponse {
+  text?: string;
+  keywords?: string[];
+  analysis?: string;
+  suggestions?: string[];
+  error?: string;
 }
 
-export interface CustomizationOptions {
-  templateId: TemplateId;
-  colorScheme: ColorScheme;
-  fontOptions: FontOptions;
+// For Gemini API (simplified)
+export interface GroundingChunk {
+  web?: {
+    uri?: string;
+    title?: string;
+  };
+  retrievedContext?: {
+    uri?: string;
+    title?: string;
+  };
 }
-
-export type ResumeSection = keyof Omit<ResumeData, 'personalDetails' | 'experience' | 'education' | 'skills' | 'customSections'> | 'experienceItem' | 'educationItem' | 'skillItem';
-
-export interface ModalContentType {
-  title: string;
-  content: React.ReactNode | string;
-  actions?: React.ReactNode;
-}
+    

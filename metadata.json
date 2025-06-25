@@ -1,5 +1,5 @@
 {
-  "name": "AI Resume Architect",
-  "description": "An AI-powered resume builder to help users create professional resumes with AI suggestions, customization, and export options. It allows users to input their personal details, work experience, education, skills, and custom sections, choose from various templates and color schemes, and leverage AI to generate or enhance resume content.",
+  "name": "AI Resume Generator",
+  "description": "An intelligent resume generator using Gemini API to help craft professional resumes with industry-specific keywords, ATS compatibility insights, and multiple export formats.",
   "requestFramePermissions": []
 }
